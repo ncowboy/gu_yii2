@@ -63,6 +63,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+        <?php var_dump(Yii::$app->session->getFlash('previousPage')); ?>
         <?= $content ?>
     </div>
 </div>

@@ -125,4 +125,17 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function setPreviousPage()
+    {
+        $ref = Yii::$app->request->referrer;
+        Yii::$app->session->setFlash('previousPage', $ref);
+    }
+
+    public function init()
+    {
+        $this->setPreviousPage();
+        parent::init();
+    }
+
 }
