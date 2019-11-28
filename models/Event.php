@@ -14,7 +14,20 @@ class Event extends Model
  *
  */
 {
-    public $isRepeatale;
+    public $name;
+    public $description;
+    public $start;
+    public $finish;
+    public $isRepeatable;
     public $isBlocking;
 
+    public function rules()
+    {
+        return [
+            [['name', 'start', 'finish', 'isRepeatable', 'isBlocking'], 'required'],
+            [ ['start'], 'date', 'format' => 'd-m-yy'],
+            ['description', 'string', 'max' => 2048],
+            [['isRepeatable', 'isBlocking'], 'boolean']
+        ];
+    }
 }
