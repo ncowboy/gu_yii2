@@ -12,18 +12,6 @@ use yii\widgets\ActiveForm;
 
 <div class="event-update">
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'name') ?>
-    <?= $form->field($model, 'start') ?>
-    <?= $form->field($model, 'finish') ?>
-    <?= $form->field($model, 'isRepeatable') ?>
-    <?= $form->field($model, 'isBlocking') ?>
-    <?= $form->field($model, 'description') ?>
-
-  <div class="form-group">
-      <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
-  </div>
-    <?php ActiveForm::end(); ?>
+  <?= $this->render('form', ['model' => new \app\models\Event()]) ?>
 
 </div>

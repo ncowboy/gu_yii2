@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 ?>
 <h1>Событие</h1>
-<?= Html::a('Создать', Url::to(['event/update']), [
+<?= Html::a('Создать', Url::to(['event/create']), [
     'class' => 'btn btn-primary'
 ]) ?>
 

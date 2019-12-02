@@ -1,9 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>event/create</h1>
+<h1>Создание события</h1>
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+  <?= $this->render('form', ['model' => new \app\models\Event()]) ?>
 </p>
