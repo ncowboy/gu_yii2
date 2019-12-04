@@ -17,7 +17,7 @@ class m191204_213151_create_events_table extends Migration
             'name' => $this->string(255)->notNull(),
             'start' => $this->integer(11),
             'end' => $this->integer(11),
-            'id_user' => $this->integer(11),
+            'author_id' => $this->integer(11),
             'description' => $this->string(4096)
         ]);
     }

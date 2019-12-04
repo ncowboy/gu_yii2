@@ -15,7 +15,7 @@ class m191204_214104_add_fk_events_user extends Migration
         $this->addForeignKey(
             'events_fk1',
             'events',
-            'id_user',
+            'author_id',
             'users',
             'id',
             'CASCADE'
