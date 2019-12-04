@@ -8,13 +8,28 @@ use yii\base\Model;
 
 class Event extends Model
 
-/**
- * @property boolean $isRepeatable может ли повторяться
- * @property boolean $isBlocking может ли быть блокирующим (в этот же день не может быть других событий)
- *
- */
+  /**
+   * @property boolean $isRepeatable может ли повторяться
+   * @property boolean $isBlocking может ли быть блокирующим (в этот же день не может быть других событий)
+   *
+   */
 {
-    public $isRepeatale;
-    public $isBlocking;
+  public $name;
+  public $description;
+  public $start;
+  public $finish;
+  public $isRepeatable;
+  public $isBlocking;
+  public $images;
 
+  public function rules()
+  {
+    return [
+      [['name', 'start', 'finish', 'isRepeatable', 'isBlocking'], 'required'],
+      [['start', 'finish'], 'date'],
+      ['description', 'string', 'max' => 2048],
+      [['isRepeatable', 'isBlocking'], 'boolean'],
+      [['images'], 'file', 'maxFiles' => 10]
+    ];
+  }
 }
