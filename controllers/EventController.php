@@ -2,7 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\Event;
+use app\models\Events;
+use app\models\User;
 
 class EventController extends \yii\web\Controller
 {
@@ -28,5 +29,4 @@ class EventController extends \yii\web\Controller
             'model'=> $model
         ]);
     }
-
 }
