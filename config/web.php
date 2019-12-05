@@ -54,6 +54,17 @@ $config = [
       'class' => \yii\rbac\DbManager::class
     ]
   ],
+  'modules' => [
+    'datecontrol' =>  [
+      'class' => 'kartik\datecontrol\Module',
+      'displaySettings' => [
+        \kartik\datecontrol\Module::FORMAT_DATE => 'dd-MM-yyyy',
+      ],
+      'saveSettings' => [
+        \kartik\datecontrol\Module::FORMAT_DATE => 'php:U', // saves as unix timestamp
+      ],
+    ]
+  ],
   'params' => $params,
 ];
 
