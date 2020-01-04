@@ -42,6 +42,13 @@ class EventsSearch extends Events
     {
         $query = Events::find();
 
+        $user = \Yii::$app->user;
+
+        if (!$user->can('admin')) {
+            $query->andWhere(['author_id' => $user->id]);
+        };
+
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\SignupForm;
+use app\models\User;
 use Yii;
 use yii\base\Theme;
 use yii\filters\AccessControl;
@@ -150,5 +151,4 @@ class SiteController extends Controller
         'model' => $model
       ]);
     }
-
 }

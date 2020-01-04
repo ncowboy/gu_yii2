@@ -47,4 +47,17 @@ class SignupForm extends Model
     $user->generateAuthKey();
     return $user->save() ? $user : null;
   }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => 'Логин',
+            'password' => 'Пароль',
+            'email' => 'Email',
+        ];
+    }
 }

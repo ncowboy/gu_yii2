@@ -78,13 +78,6 @@ class EventsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-//        else {
-//          echo '<pre>';
-//          print_r ($model->errors);
-//          echo '</pre>';
-//          die();
-//
-//        }
 
         return $this->render('create', [
             'model' => $model,
