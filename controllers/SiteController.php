@@ -2,7 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\SignupForm;
+use app\models\User;
 use Yii;
+use yii\base\Theme;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -138,4 +141,14 @@ class SiteController extends Controller
         parent::init();
     }
 
+    public function actionSignup()
+    {
+      $model = new SignupForm();
+      if($model->load(Yii::$app->request->post()) && $model->signup()){
+        return $this->goHome();
+      }
+      return $this->render('signup', [
+        'model' => $model
+      ]);
+    }
 }
