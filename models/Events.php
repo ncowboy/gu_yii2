@@ -37,11 +37,13 @@ class Events extends \yii\db\ActiveRecord
         return [
             [['name', 'start'], 'required'],
             [['author_id', 'start', 'end', 'is_full_day', 'is_repeatable'], 'integer'],
-            ['end', 'default', 'value' => function ($model) {
-                return $model->start;
-            }, 'when' => function ($model) {
-                return $model->end > $model->start;
-            }],
+//            ['end', 'default', 'value' => function ($model) {
+//                return $model->start;
+//            }, 'when' => function ($model) {
+//                return $model->end > $model->start;
+//            }],
+            [['end'], 'ifEndEmpty', 'skipOnEmpty' => false],
+            [['end'], 'checkEndDate', 'skipOnError' => false, 'skipOnEmpty' => false],
             [['name'], 'string', 'max' => 255],
             [['description'], 'string', 'max' => 4096],
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['author_id' => 'id']],
@@ -86,6 +88,21 @@ class Events extends \yii\db\ActiveRecord
         if (is_null($this->author_id)) {
             $this->author_id = Yii::$app->getUser()->getId();
             $this->save();
+        }
+    }
+
+    public function ifEndEmpty($attribute)
+    {
+        if (empty($this->$attribute)) {
+            $this->$attribute = $this->start;
+        }
+    }
+
+    public function checkEndDate($attribute)
+    {
+        if ($this->$attribute < $this->start) {
+            $this->addError($attribute, 'Дата окончания не может быть позднее даты начала');
+            return false;
         }
     }
 }
