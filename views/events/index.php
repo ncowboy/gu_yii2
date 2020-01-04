@@ -31,6 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'start',
             'end',
             'author_id',
+            'is_repeatable',
+            'is_full_day',
+            'author_id',
             //'description',
 
             ['class' => 'yii\grid\ActionColumn'],

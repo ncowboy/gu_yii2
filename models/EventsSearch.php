@@ -17,7 +17,7 @@ class EventsSearch extends Events
     public function rules()
     {
         return [
-            [['id', 'start', 'end', 'author_id'], 'integer'],
+            [['id', 'start', 'end', 'author_id', 'is_full_day', 'is_repeatable'], 'integer'],
             [['name', 'description'], 'safe'],
         ];
     }
@@ -69,6 +69,8 @@ class EventsSearch extends Events
             'start' => $this->start,
             'end' => $this->end,
             'author_id' => $this->author_id,
+            'is_repeatable' => $this->is_repeatable,
+            'is_full_day' => $this->is_full_day,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
