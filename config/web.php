@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'language' => 'ru',
+    'language'=>'ru',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -53,16 +53,22 @@ $config = [
         ],
         'authManager' => [
             'class' => \yii\rbac\DbManager::class
-        ]
+        ],
+        'formatter' => [
+            'dateFormat' => 'php:d.m.Y',
+            'datetimeFormat' => 'php:d.m.Y H:i:s',
+        ],
     ],
     'modules' => [
         'datecontrol' => [
             'class' => 'kartik\datecontrol\Module',
             'displaySettings' => [
                 \kartik\datecontrol\Module::FORMAT_DATE => 'dd-MM-yyyy',
+                \kartik\datecontrol\Module::FORMAT_DATETIME => 'dd-MM-yyyy H:i',
             ],
             'saveSettings' => [
                 \kartik\datecontrol\Module::FORMAT_DATE => 'php:U', // saves as unix timestamp
+                \kartik\datecontrol\Module::FORMAT_DATETIME => 'php:U', // saves as unix timestamp
             ],
         ]
     ],
