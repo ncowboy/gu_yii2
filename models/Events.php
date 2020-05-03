@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "events".
@@ -14,6 +15,8 @@ use Yii;
  * @property int|null $author_id
  * @property string|null $description
  * @property int|null $is_full_day
+ * @property int $created_at
+ * @property int $updated_at
  * @property int|null $is_repeatable
  *
  * @property Calendar[] $calendars
@@ -30,18 +33,22 @@ class Events extends \yii\db\ActiveRecord
     }
 
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class
+        ];
+    }
+    /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [['name', 'start'], 'required'],
-            [['author_id', 'start', 'end', 'is_full_day', 'is_repeatable'], 'integer'],
-//            ['end', 'default', 'value' => function ($model) {
-//                return $model->start;
-//            }, 'when' => function ($model) {
-//                return $model->end > $model->start;
-//            }],
+            [['author_id', 'start', 'end', 'is_full_day', 'is_repeatable', 'created_at', 'updated_at'], 'integer'],
             [['end'], 'ifEndEmpty', 'skipOnEmpty' => false],
             [['end'], 'checkEndDate', 'skipOnError' => false, 'skipOnEmpty' => false],
             [['name'], 'string', 'max' => 255],
@@ -58,12 +65,15 @@ class Events extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
-            'start' => 'Дата начала',
-            'end' => 'Дата окончания',
+            'start' => 'Дата/время начала',
+            'end' => 'Дата/время окончания',
             'author_id' => 'Пользователь',
             'description' => 'Описание',
             'is_full_day' => 'На весь день',
             'is_repeatable' => 'Повторяется',
+            'authorName' => 'Автор',
+            'created_at' => 'Создано',
+            'updated_at' => 'Обновлено',
         ];
     }
 
@@ -78,9 +88,14 @@ class Events extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getAuthor()
     {
         return $this->hasOne(User::className(), ['id' => 'author_id']);
+    }
+
+    public function getAuthorName()
+    {
+        return $this->author->username;
     }
 
     public function afterSave($insert, $changedAttributes)

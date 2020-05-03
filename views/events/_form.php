@@ -17,11 +17,11 @@ use kartik\datecontrol\DateControl;
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'start')->widget(DateControl::classname(), [
-        'type' => DateControl::FORMAT_DATE
+        'type' => DateControl::FORMAT_DATETIME
     ]); ?>
 
     <?= $form->field($model, 'end')->widget(DateControl::classname(), [
-        'type' => DateControl::FORMAT_DATE
+        'type' => DateControl::FORMAT_DATETIME
     ]) ?>
 
     <?= $form->field($model, 'description')->textarea() ?>

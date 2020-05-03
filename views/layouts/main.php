@@ -41,6 +41,8 @@ AppAsset::register($this);
             ['label' => 'Домой', 'url' => ['/site/index']],
             !Yii::$app->user->isGuest ? (
             ['label' => 'События', 'url' => ['/events']]) : '',
+            Yii::$app->user->can('admin') ? (
+            ['label' => 'Пользователи', 'url' => ['/user']]) : '',
             Yii::$app->user->isGuest ? (
             ['label' => 'Регистрация', 'url' => ['/site/signup']]) : '',
             Yii::$app->user->isGuest ? (
